@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0B2239">
+  <meta name="description" content="Tasarruf Planım ile tahmini teslim tarihini, ödeme planını ve vade süreni kolayca planla.">
+  <title>Tasarruf Planım | Hedefine giden yolu planla.</title>
+  <link rel="icon" type="image/png" href="assets/tasarruf-planim-icon.png">
+  <style>
+    :root{
+      --navy:#0B2239;--petrol:#052F3D;--teal:#087C72;--turquoise:#11CFC5;
+      --soft:#E8F7F5;--bg:#F7F9FB;--card:#FFFFFF;--text:#132D3D;
+      --muted:#667D89;--line:#DCE8EB;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
+    a{color:inherit}
+    .container{width:min(1120px,calc(100% - 36px));margin:auto}
+    header{position:sticky;top:0;z-index:20;background:rgba(247,249,251,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(220,232,235,.9)}
+    .nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand img{display:block;width:245px;max-width:52vw;height:auto}
+    .links{display:flex;align-items:center;gap:24px;font-size:14px;font-weight:650;color:#526B78}
+    .links a{text-decoration:none}.links a:hover{color:var(--teal)}
+    .hero{padding:34px 0 30px}
+    .hero-card{position:relative;overflow:hidden;min-height:500px;border-radius:34px;padding:68px 64px;display:flex;align-items:center;background:linear-gradient(135deg,#081D35 0%,#052F3D 62%,#064E53 100%);box-shadow:0 24px 70px rgba(11,34,57,.18)}
+    .hero-card:before,.hero-card:after{content:"";position:absolute;border-radius:999px;filter:blur(2px);pointer-events:none}
+    .hero-card:before{width:390px;height:390px;right:-90px;top:-120px;background:radial-gradient(circle,rgba(17,207,197,.18),transparent 68%)}
+    .hero-card:after{width:360px;height:360px;right:160px;bottom:-240px;background:radial-gradient(circle,rgba(17,207,197,.12),transparent 70%)}
+    .hero-copy{position:relative;z-index:2;max-width:650px}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid rgba(126,236,226,.22);background:rgba(232,247,245,.08);border-radius:999px;color:#AEEAE5;font-size:12px;font-weight:800;letter-spacing:.08em}
+    h1{margin:22px 0 14px;color:#fff;font-size:clamp(38px,5.5vw,64px);line-height:1.06;letter-spacing:-.035em}
+    .hero p{max-width:610px;margin:0;color:#C9D9DE;font-size:clamp(16px,2vw,19px)}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+    .button{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;padding:13px 19px;border-radius:14px;font-size:14px;font-weight:800}
+    .button.primary{background:linear-gradient(135deg,#14D2C7,#08AFA9);color:#052F3D;box-shadow:0 10px 28px rgba(17,207,197,.22)}
+    .button.secondary{color:#EAF8F7;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06)}
+    .hero-icon{position:absolute;z-index:1;width:300px;right:54px;bottom:44px;opacity:.11;border-radius:52px}
+    .section{padding:48px 0 12px}
+    .section-head{max-width:700px;margin-bottom:24px}
+    .section-head span{font-size:12px;font-weight:850;letter-spacing:.1em;color:var(--teal)}
+    h2{font-size:clamp(27px,4vw,38px);line-height:1.15;letter-spacing:-.025em;color:var(--navy);margin:8px 0 10px}
+    .section-head p{color:var(--muted);margin:0}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .feature{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:25px;box-shadow:0 10px 35px rgba(11,34,57,.045)}
+    .feature .num{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;background:var(--soft);color:var(--teal);font-weight:900;margin-bottom:20px}
+    .feature h3{color:var(--navy);font-size:18px;margin:0 0 7px}.feature p{color:var(--muted);font-size:14px;margin:0}
+    .about{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+    .panel{background:#fff;border:1px solid var(--line);border-radius:24px;padding:30px}
+    .panel.dark{background:linear-gradient(145deg,var(--navy),var(--petrol));border:0;color:white}
+    .panel h3{font-size:22px;margin:0 0 10px;color:var(--navy)}.panel.dark h3{color:#fff}
+    .panel p{margin:0;color:var(--muted)}.panel.dark p{color:#C9D9DE}
+    .legal{padding-top:28px}
+    details{background:#fff;border:1px solid var(--line);border-radius:18px;margin:12px 0;overflow:hidden}
+    summary{cursor:pointer;list-style:none;padding:19px 22px;color:var(--navy);font-weight:800}
+    summary::-webkit-details-marker{display:none}
+    .legal-copy{padding:0 22px 22px;color:var(--muted);font-size:14px}
+    .legal-copy p{margin:0 0 12px}
+    footer{margin-top:55px;background:#071F32;color:#C3D2D8;padding:38px 0}
+    .footer-row{display:flex;justify-content:space-between;align-items:center;gap:24px}
+    .footer-logo{width:215px;filter:brightness(0) invert(1);opacity:.94}
+    .footer-copy{text-align:right;font-size:12px;color:#91A8B2}
+    @media(max-width:850px){
+      .links{display:none}.hero-card{padding:48px 28px;min-height:480px}.hero-icon{width:220px;right:-35px;bottom:-20px;opacity:.08}
+      .grid,.about{grid-template-columns:1fr}.section{padding-top:38px}
+    }
+    @media(max-width:520px){
+      .container{width:min(100% - 24px,1120px)}.nav{height:68px}.brand img{width:205px;max-width:70vw}
+      .hero{padding-top:18px}.hero-card{border-radius:25px;padding:40px 23px;min-height:455px}
+      .cta-row{flex-direction:column}.button{width:100%}.footer-row{flex-direction:column;align-items:flex-start}.footer-copy{text-align:left}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="#anasayfa" aria-label="Tasarruf Planım">
+      <img src="assets/tasarruf-planim-logo.png" alt="Tasarruf Planım">
+    </a>
+    <nav class="links">
+      <a href="#ozellikler">Neler Sunuyor?</a>
+      <a href="#hakkinda">Hakkımızda</a>
+      <a href="#yasal">Yasal</a>
+      <a href="#iletisim">İletişim</a>
+    </nav>
+  </div>
+</header>
+
+<main id="anasayfa">
+  <div class="container hero">
+    <section class="hero-card">
+      <div class="hero-copy">
+        <div class="eyebrow">TASARRUF FİNANSMANI • KARAR DESTEK</div>
+        <h1>Hedefine giden yolu planla.</h1>
+        <p>Tasarruf finansman planını oluştur; tahmini teslim tarihini, ödeme planını ve vade süreni kolayca gör.</p>
+        <div class="cta-row">
+          <a class="button primary" href="#ozellikler">Nasıl çalışır?</a>
+          <a class="button secondary" href="#yasal">Yasal bilgilendirme</a>
+        </div>
+      </div>
+      <img class="hero-icon" src="assets/tasarruf-planim-icon.png" alt="">
+    </section>
+  </div>
+
+  <section class="container section" id="ozellikler">
+    <div class="section-head">
+      <span>PLANINI DAHA NET GÖR</span>
+      <h2>İhtiyacın olan temel bilgiler tek yerde.</h2>
+      <p>Karmaşık tablolar yerine sade, anlaşılır ve planlama odaklı bir deneyim.</p>
+    </div>
+    <div class="grid">
+      <article class="feature"><div class="num">01</div><h3>Tahmini Teslim Tarihi</h3><p>Girdiğin plan bilgilerine göre tahmini teslim zamanını kolayca görüntüle.</p></article>
+      <article class="feature"><div class="num">02</div><h3>Ödeme Planı</h3><p>Aylık taksit akışını ve planın ilerleyişini anlaşılır bir yapıda incele.</p></article>
+      <article class="feature"><div class="num">03</div><h3>Vade ve Artış Seçenekleri</h3><p>Farklı ödeme ve artış modelleriyle kendi planını oluştur.</p></article>
+    </div>
+  </section>
+
+  <section class="container section" id="hakkinda">
+    <div class="about">
+      <div class="panel">
+        <h3>Bağımsız bir karar destek uygulaması</h3>
+        <p>Tasarruf Planım; kullanıcıların tasarruf finansman planlarını kendi girdileri üzerinden anlamasına ve planlamasına yardımcı olmak amacıyla geliştirilmiştir.</p>
+      </div>
+      <div class="panel dark">
+        <h3>Bilgilendirme amaçlı</h3>
+        <p>Uygulamadaki hesaplamalar tahmini sonuçlardır. Resmî plan, sözleşme ve teslim koşulları ilgili tasarruf finansman kuruluşu tarafından belirlenir.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section legal" id="yasal">
+    <div class="section-head">
+      <span>ŞEFFAFLIK</span>
+      <h2>Yasal bilgiler</h2>
+    </div>
+    <details open>
+      <summary>Gizlilik Politikası</summary>
+      <div class="legal-copy">
+        <p>Tasarruf Planım, uygulamanın çalışması için gerekli kullanıcı ve teknik verileri hizmetin sunulması, güvenliği ve hesap işlevlerinin yürütülmesi amacıyla işler. Kullanıcı verileri izinsiz şekilde satılmaz.</p>
+        <p>Hesap sahibi kullanıcılar uygulama içindeki hesap silme özelliğini kullanarak hesaplarının ve hesapla ilişkili silinebilir verilerin kaldırılmasını talep edebilir.</p>
+        <p>Bildirim özelliği kullanıldığında cihaz bildirim belirteçleri, bildirim hizmetinin sağlanabilmesi amacıyla işlenebilir.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Kullanım Koşulları</summary>
+      <div class="legal-copy">
+        <p>Tasarruf Planım tarafından oluşturulan hesaplama, teslim tarihi, vade ve ödeme planı sonuçları bilgilendirme amaçlı tahminlerdir; resmî teklif, sözleşme veya teslim taahhüdü değildir.</p>
+        <p>Tasarruf Planım tasarruf finansman sözleşmesi oluşturmaz, ödeme kabul etmez ve herhangi bir tasarruf finansman kuruluşu adına işlem yapmaz. Nihai plan, sözleşme şartları ve teslim bilgileri ilgili kuruluş tarafından belirlenir.</p>
+      </div>
+    </details>
+  </section>
+
+  <section class="container section" id="iletisim">
+    <div class="panel">
+      <h3>İletişim</h3>
+      <p>Tasarruf Planım ile ilgili iletişim bilgileri bu sayfada yayımlanacaktır.</p>
+      <p style="margin-top:10px"><strong style="color:#0B2239">Yapımcı:</strong> Hanefi Bedirhan Turanoğlu</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-row">
+    <img class="footer-logo" src="assets/tasarruf-planim-logo.png" alt="Tasarruf Planım">
+    <div class="footer-copy">© 2026 Tasarruf Planım<br>Tüm hakları saklıdır.</div>
+  </div>
+</footer>
+</body>
+</html>
